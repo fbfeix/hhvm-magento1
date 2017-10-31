@@ -16,8 +16,7 @@ services:
       - ./www:/var/www/public
       - .docker/hhvm/server.ini:/etc/hhvm/server.ini
       - .docker/hhvm/php.ini:/etc/hhvm/php.ini
-    ports:
-      - "5896:80"
+
   nginx:
     image: nginx:1.13.6
     environment:
@@ -25,7 +24,6 @@ services:
       - NGINX_PORT=3333
     ports:
       - "80:80"
-      - "9000:9000"
     volumes:
       - ./www:/usr/share/nginx/html
       - ./.docker/nginx:/etc/nginx/conf.d
