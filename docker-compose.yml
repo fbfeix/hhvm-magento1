@@ -11,20 +11,24 @@ services:
       MYSQL_USER: magento
       MYSQL_PASSWORD: magepw
   php:
-    image: hhvm/hhvm
+    build: ./.docker/hhvm
     volumes:
       - ./www:/var/www/public
+      - .docker/hhvm/server.ini:/etc/hhvm/server.ini
     ports:
-      - "5896:5896"
+      - "5896:80"
   nginx:
-    image: nginx:1.13.6-alpine
+    image: nginx:1.13.6
     environment:
       - NGINX_HOST=foobar.com
       - NGINX_PORT=3333
     ports:
-      - "80:3333"
+      - "80:80"
+      - "9000:9000"
     volumes:
-      - ./www:/var/www/public
-
+      - ./www:/usr/share/nginx/html
+      - ./.docker/nginx:/etc/nginx/conf.d
+    links:
+      - php:php
     # debug mode:
     command: [nginx-debug, '-g', 'daemon off;']
