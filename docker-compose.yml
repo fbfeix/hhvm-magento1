@@ -15,6 +15,7 @@ services:
     volumes:
       - ./www:/var/www/public
       - .docker/hhvm/server.ini:/etc/hhvm/server.ini
+      - .docker/hhvm/php.ini:/etc/hhvm/php.ini
     ports:
       - "5896:80"
   nginx:
