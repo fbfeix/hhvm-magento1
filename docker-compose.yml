@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:5.6
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: foobar
+      MYSQL_DATABASE: magento
+      MYSQL_USER: magento
+      MYSQL_PASSWORD: magepw
+  php:
+    image: hhvm/hhvm
+    volumes:
+      - ./www:/var/www/public
+    ports:
+      - "5896:5896"
+  nginx:
+    image: nginx:1.13.6-alpine
+    environment:
+      - NGINX_HOST=foobar.com
+      - NGINX_PORT=3333
+    ports:
+      - "80:3333"
+    volumes:
+      - ./www:/var/www/public
+
+    # debug mode:
+    command: [nginx-debug, '-g', 'daemon off;']

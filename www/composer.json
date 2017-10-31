@@ -1,0 +1,28 @@
+{
+    "name": "root/mage_example",
+    "type": "magento-module",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "magento-hackathon/magento-composer-installer": "~3.0",
+        "aydin-hassan/magento-core-composer-installer": "~1.2",
+        "firegento/magento": "~1.9.3.6"
+
+    },
+    "authors": [
+        {
+            "name": "Felix Astner",
+            "email": "astner.felix@live.de"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.firegento.com"
+        }
+    ],
+    "extra": {
+        "magento-root-dir": "htdocs",
+        "magento-force": "override"
+    }
+}
