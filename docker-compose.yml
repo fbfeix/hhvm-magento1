@@ -13,10 +13,11 @@ services:
   php:
     build: ./.docker/hhvm
     volumes:
-      - ./www:/var/www/public
+      - ./www/htdocs:/var/www/public
       - .docker/hhvm/server.ini:/etc/hhvm/server.ini
       - .docker/hhvm/php.ini:/etc/hhvm/php.ini
-
+    links:
+      - db:db
   nginx:
     image: nginx:1.13.6
     environment:
@@ -25,7 +26,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./www:/usr/share/nginx/html
+      - ./www/htdocs:/usr/share/nginx/html
       - ./.docker/nginx:/etc/nginx/conf.d
     links:
       - php:php
