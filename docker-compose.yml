@@ -20,9 +20,6 @@ services:
       - db:db
   nginx:
     image: nginx:1.13.6
-    environment:
-      - NGINX_HOST=foobar.com
-      - NGINX_PORT=3333
     ports:
       - "80:80"
     volumes:
